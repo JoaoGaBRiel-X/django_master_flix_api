@@ -19,7 +19,10 @@ def genre_create_list_view(request):
         new_genre = Genre(name=data["name"])
         new_genre.save()
 
-        return JsonResponse({"id": new_genre.id, "name": new_genre.name}, status=201)
+        return JsonResponse(
+            {"id": new_genre.id, "name": new_genre.name},
+            status=201,
+        )
 
 
 @csrf_exempt
@@ -37,3 +40,11 @@ def genre_detail_view(request, pk):
         genre.save()
 
         return JsonResponse({"id": genre.id, "name": genre.name})
+
+    elif request.method == "DELETE":
+        genre.delete()
+
+        return JsonResponse(
+            {"mesage": "Gênero excluido com sucesso."},
+            status=204,
+        )

@@ -6,9 +6,9 @@ from genres.models import Genre
 class Movie(models.Model):
     title = models.CharField(max_length=500)
     genre = models.ForeignKey(
-        Genre, 
+        Genre,
         on_delete=models.PROTECT,
-        related_name='movies'    
+        related_name='movies',
     )
     release_date = models.DateField(null=True, blank=True)
     actors = models.ManyToManyField(Actor, related_name='movies')
